@@ -51,9 +51,14 @@ class MainActivity : AppCompatActivity() {
 // viewModel.myResponse2.observe(this, Observer { response ->
 
 
-        // CHANGING IT TO QUERY, GETTING DYNAMIC CUSTOM POST
-            viewModel.getCustomPosts(Integer.parseInt(myNumber))
-            viewModel.getCustomPosts.observe(this, Observer { response ->
+
+
+        // CHANGING IT TO QUERY, GETTING DYNAMIC CUSTOM POST (NOW WE ARE USING HASH MAP)
+            val options : HashMap<String, String> = HashMap()
+            options["_sort"] = " id"
+            options["_order"] = " desc"
+            viewModel.getCustomPosts2(Integer.parseInt(myNumber),  options)
+            viewModel.getCustomPosts2.observe(this, Observer { response ->
                 if (response.isSuccessful) {
                     tv.text = response.body().toString()
 //                    LOGGING FOR EACH POST AND ID

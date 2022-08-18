@@ -5,6 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface SimpleApi {
 
@@ -23,6 +24,18 @@ interface SimpleApi {
 //    ADDING QUERY IN GET REQUEST
     @GET ("posts")
     suspend fun getCustomPosts(
-    @Query("userId")  userId : Int
+    @Query("userId")  userId : Int,
+//    MULTIPLE QUERY
+    @Query("_sort") sort : String,
+    @Query("_order") order : String,
     ): Response<List<Post>>
+
+//    QUERY MAP
+@GET ("posts")
+suspend fun getCustomPosts2(
+    @Query ("userId") userId : Int,
+    @QueryMap options : Map<String, String>
+): Response<List<Post>>
+
+
 }
