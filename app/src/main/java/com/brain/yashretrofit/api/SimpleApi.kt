@@ -4,6 +4,7 @@ import com.brain.yashretrofit.model.Post
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SimpleApi {
 
@@ -18,4 +19,10 @@ interface SimpleApi {
         @Path("postNumber")  number : Int
     ): Response<Post>
 
+
+//    ADDING QUERY IN GET REQUEST
+    @GET ("posts")
+    suspend fun getCustomPosts(
+    @Query("userId")  userId : Int
+    ): Response<List<Post>>
 }
