@@ -6,13 +6,14 @@ import androidx.lifecycle.viewModelScope
 import com.brain.yashretrofit.model.Post
 import com.brain.yashretrofit.repository.Repository
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
-    val myResponse:  MutableLiveData<Post> = MutableLiveData()
+    val myResponse:  MutableLiveData<Response<Post>> = MutableLiveData()
 
     fun getPost() {
             viewModelScope.launch {
-                val response : Post = repository.getPost()
+                val response : Response<Post> = repository.getPost()
                 myResponse.value = response
             }
     }
