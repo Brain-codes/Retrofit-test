@@ -26,4 +26,14 @@ suspend fun getCustomPosts2(userId : Int, options : Map <String, String>) : Resp
     return RetrofitInstance.api.getCustomPosts2(userId, options)
 }
 
+//FOR PUSH POST @POST
+    suspend fun pushPost(post : Post) : Response<Post> {
+        return RetrofitInstance.api.pushPost(post)
+    }
+
+    //FOR PUSH POST FORM ENCODED @POST
+    suspend fun pushPost2( userId: Int, id : Int, body : String, title: String) : Response<Post> {
+        return RetrofitInstance.api.pushPost2(userId, id, body, title)
+    }
+
 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brain.yashretrofit.adapter.MyAdaptar
+import com.brain.yashretrofit.model.Post
 import com.brain.yashretrofit.repository.Repository
 
 class MainActivity : AppCompatActivity() {
@@ -32,10 +33,15 @@ class MainActivity : AppCompatActivity() {
         val viewModelFactory = MainViewModelFactory(repository)
         //INITIALIZE OUR VIEW MODEL
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getCustomPosts(2, "id", "desc")
+
+//        val myPost = Post(2, 2, "Anonimos-brain", "Javatinzz")
+        viewModel.pushPost2(2,2, "waris", "Imback")
         viewModel.myCustomPosts.observe(this, Observer{response ->
             if (response.isSuccessful) {
-                response.body()?.let { myAdapter.setData(it) }
+                Log.d("Main", response.body().toString())
+                Log.d("Main", response.code().toString())
+                Log.d("Main", response.message().toString())
+
             } else {
                 Toast.makeText(this, response.code(), Toast.LENGTH_SHORT).show()
             }
